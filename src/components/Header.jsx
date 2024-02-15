@@ -5,7 +5,9 @@ import { NewsCategoryContext, NewsContex } from "../context";
 
 export default function Header() {
   const [searchBox, setSearchBox] = useState(false);
-  const { newsData } = useContext(NewsContex);
+  const [searchItem, setSearchItem] = useState(null);
+  const [search, setSearch] = useState(null);
+  const { newsData, setNewsData } = useContext(NewsContex);
   const { setSelectedCategory } = useContext(NewsCategoryContext);
 
   const [navCategory, setNavCategory] = useState([
@@ -17,10 +19,18 @@ export default function Header() {
     "sports",
     "technology",
   ]);
+  function handleSearch(e){
+    e.preventDefault()
+    setSearchItem(e.target.value)
+  }
   function handleClick(cat) {
     setSelectedCategory(cat);
   }
-
+  function handleChange(e) {
+    e.preventDefault()
+    console.log(searchItem)
+    setSearch(searchItem)
+  }
   return (
     <>
       <nav className="border-b border-black py-6 md:py-8">
@@ -90,10 +100,11 @@ export default function Header() {
           <div className="flex items-center space-x-3 lg:space-x-8">
             {
               searchBox ? (
-                <form action="#">
+                <form onSubmit={handleChange} action="#">
                   <input
                     className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
                     type="search"
+                    onChange={handleSearch}
                     placeholder="Search Content"
                     required
                   />

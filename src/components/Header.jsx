@@ -90,16 +90,23 @@ export default function Header() {
           <div className="flex items-center space-x-3 lg:space-x-8">
             {
               searchBox ? (
-                <input
-                  className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
-                  type="search"
-                  placeholder="Search Content"
-                  required
-                />
+                <form action="#">
+                  <input
+                    className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
+                    type="search"
+                    placeholder="Search Content"
+                    required
+                  />
+                </form>
               ) : null // If searchBox is false, you might want to render null or some other fallback
             }
 
-            <img onClick={()=>{setSearchBox(!searchBox)}} src={searchIcon} />
+            <img
+              onClick={() => {
+                setSearchBox(!searchBox);
+              }}
+              src={searchIcon}
+            />
           </div>
         </div>
 

@@ -1,11 +1,16 @@
 import "./assets/styles/output.css";
 
 import Page from "./components/Page";
+import { NewsProvider, NewsCategoryProvider } from "./provider";
 
 function App() {
   return (
     <>
-      <Page />
+      <NewsCategoryProvider>
+        <NewsProvider>
+          <Page />
+        </NewsProvider>
+      </NewsCategoryProvider>
     </>
   );
 }
